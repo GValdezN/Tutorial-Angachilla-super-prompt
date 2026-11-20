@@ -3,6 +3,7 @@ const path = require('path');
 
 const SITE = 'https://angachilla.strategiccode.cl';
 const W = 390, H = 844;
+const HEADLESS = !process.env.DISPLAY && process.platform === 'linux';
 
 async function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -300,10 +301,11 @@ async function closeBanner(page) {
 // =========================================================================
 
 (async () => {
+  if (HEADLESS) console.log('⚡ Modo headless (sin display detectado)');
   const browser = await chromium.launch({
-    headless: false,
+    headless: HEADLESS,
     ignoreDefaultArgs: ['--enable-automation'],
-    args: ['--disable-blink-features=AutomationControlled']
+    args: ['--disable-blink-features=AutomationControlled', '--no-sandbox']
   });
 
   const ctx = await browser.newContext({

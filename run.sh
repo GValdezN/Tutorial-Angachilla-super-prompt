@@ -25,11 +25,14 @@ fi
 
 if ! node -e "require('playwright')" 2>/dev/null; then
   echo "📦 Instalando Playwright..."
-  npm init -y --silent 2>/dev/null || true
   npm install playwright --save
-  npx playwright install chromium
-  echo "✅ Playwright instalado"
+  echo "✅ Playwright módulo instalado"
 fi
+
+# Always ensure chromium browser + system deps are ready
+echo "🔍 Verificando browser Chromium..."
+npx playwright install --with-deps chromium 2>&1 | tail -5
+echo "✅ Chromium listo"
 
 # --- Create output dir -------------------------------------------------
 mkdir -p "$DIR/videos"
