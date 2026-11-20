@@ -1,0 +1,14 @@
+{
+  "name": "angachilla-tutorial",
+  "version": "1.0.0",
+  "description": "Video tutorial generator for Angachilla App — Reserva Comunitaria Bosque Humedal, Valdivia",
+  "scripts": {
+    "demo:desktop": "node demo-angachilla.js",
+    "demo:mobile": "node demo-angachilla-mobile.js",
+    "demo:all": "node demo-angachilla.js && node demo-angachilla-mobile.js",
+    "postinstall": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}
